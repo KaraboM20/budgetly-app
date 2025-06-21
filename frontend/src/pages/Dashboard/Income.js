@@ -12,8 +12,6 @@ import { useUserAuth } from '../../hooks/useUserAuth';
 import RecentIncome from '../../components/Dashboard/RecentIncome';
 import { defaultDashboardData } from '../../utils/defaultDashboardData';
 import './Income.css';
-
-// 📊 Chart imports
 import {
   BarChart,
   Bar,
@@ -26,8 +24,7 @@ import {
 
 const Income = () => {
   useUserAuth();
-
-  const [incomeData, setIncomeData] = useState([]);
+  const [incomeData, setIncomeData] = useState(defaultDashboardData.last60DaysIncome.transactions);
   const [loading, setLoading] = useState(false);
   const [openDeleteAlert, setOpenDeleteAlert] = useState({ show: false, data: null });
   const [openAddIncomeModal, setOpenAddIncomeModal] = useState(false);
@@ -35,14 +32,11 @@ const Income = () => {
   const fetchIncomeDetails = async () => {
     if (loading) return;
     setLoading(true);
-
     try {
       const response = await axiosInstance.get(API_PATHS.INCOME.GET_ALL_INCOME);
-      if (response.data && response.data.length > 0) {
-        setIncomeData(response.data);
-      } else {
-        setIncomeData(defaultDashboardData.last60DaysIncome.transactions);
-      }
+      setIncomeData(response.data && response.data.length > 0 
+        ? response.data 
+        : defaultDashboardData.last60DaysIncome.transactions);
     } catch (error) {
       console.error("Failed to fetch income:", error);
       setIncomeData(defaultDashboardData.last60DaysIncome.transactions);
@@ -53,16 +47,16 @@ const Income = () => {
 
   const handleAddIncome = async (income) => {
     const { source, amount, date, icon } = income;
-
-    if (!source.trim()) return toast.error("Source is required.");
+    if (!source?.trim()) return toast.error("Source is required.");
     if (!amount || isNaN(amount) || Number(amount) <= 0) return toast.error("Amount must be a valid number.");
     if (!date) return toast.error("Date is required.");
-
     try {
       await axiosInstance.post(API_PATHS.INCOME.ADD_INCOME, {
-        source, amount, date, icon,
+        source, 
+        amount: Number(amount),
+        date,
+        icon: icon || '💰',
       });
-
       toast.success("Income added");
       setOpenAddIncomeModal(false);
       fetchIncomeDetails();
@@ -89,7 +83,6 @@ const Income = () => {
       const response = await axiosInstance.get(API_PATHS.INCOME.DOWNLOAD_INCOME, {
         responseType: 'blob',
       });
-
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement("a");
       link.href = url;
@@ -102,22 +95,19 @@ const Income = () => {
     }
   };
 
-  
   useEffect(() => {
     fetchIncomeDetails();
   }, []);
 
-  // 📊 Prepare bar chart data
-  const barChartData = (incomeData.length > 0 ? incomeData : defaultDashboardData.last60DaysIncome.transactions)
-    .reduce((acc, item) => {
-      const existing = acc.find(e => e.source === item.source);
-      if (existing) {
-        existing.amount += item.amount;
-      } else {
-        acc.push({ source: item.source, amount: item.amount });
-      }
-      return acc;
-    }, []);
+  const barChartData = incomeData.reduce((acc, item) => {
+    const existing = acc.find(e => e.source === item.source);
+    if (existing) {
+      existing.amount += item.amount;
+    } else {
+      acc.push({ source: item.source, amount: item.amount });
+    }
+    return acc;
+  }, []);
 
   return (
     <DashboardLayout activeMenu="Income">
@@ -127,17 +117,13 @@ const Income = () => {
             transactions={incomeData}
             onAddIncome={() => setOpenAddIncomeModal(true)}
           />
-
           <IncomeList
             transactions={incomeData}
             onDelete={(id) => setOpenDeleteAlert({ show: true, data: id })}
             onDownload={handleDownloadIncomeDetails}
           />
-
           <RecentIncome transactions={incomeData} />
         </div>
-
-        
         <div className="income-chart-section">
           <h3 className="chart-title">Income by Source</h3>
           <ResponsiveContainer width="100%" height={300}>
@@ -154,7 +140,6 @@ const Income = () => {
             </BarChart>
           </ResponsiveContainer>
         </div>
-
         <Modal
           isOpen={openAddIncomeModal}
           onClose={() => setOpenAddIncomeModal(false)}
@@ -162,7 +147,6 @@ const Income = () => {
         >
           <AddIncomeForm onAddIncome={handleAddIncome} />
         </Modal>
-
         <Modal
           isOpen={openDeleteAlert.show}
           onClose={() => setOpenDeleteAlert({ show: false, data: null })}

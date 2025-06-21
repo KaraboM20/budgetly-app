@@ -7,12 +7,7 @@ const ExpenseList = ({transactions, onDelete, onDownload}) => {
   return (
     <div>
       <div>
-        <h5>
-            All Expense
-        </h5>
-        <button onClick={onDownload}>
-            <LuDownload /> Download
-        </button>
+        
       </div>
 
       <div>
