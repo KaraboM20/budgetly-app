@@ -5,7 +5,6 @@ import Input from '../../components/Inputs/Input';
 import { Link } from 'react-router-dom';
 import { validateEmail } from '../../utils/helper';
 import './SignUp.css';
-import ProfilePhotoSelector from '../../components/Inputs/ProfilePhotoSelector';
 import axiosInstance from '../../utils/axiosInstance';
 import { UserContext } from '../../context/UserContext';
 import uploadImage from '../../utils/uploadImage';
@@ -103,7 +102,7 @@ const SignUp = () => {
           type="password"
           />
 
-          <ProfilePhotoSelector image={profilePic} setImage={setProfilePic} />
+          
         </div>
 
         {error && <p>{error}</p>}
