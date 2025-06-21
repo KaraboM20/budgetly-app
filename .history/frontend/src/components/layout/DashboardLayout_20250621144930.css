@@ -1,0 +1,51 @@
+.dashboard-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.navbar-container {
+  height: 60px; /* fixed height */
+  background-color: #292943;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  z-index: 2000;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.main-content {
+  display: flex;
+  margin-top: 60px; /* push down below navbar */
+  height: calc(100vh - 60px);
+  transition: margin-left 0.3s ease;
+}
+
+.main-content.menu-open {
+  margin-left: 250px; /* width of your side menu */
+}
+
+.page-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* SideMenu should have fixed width 250px */
+.side-menu-container {
+  width: 250px;
+  background-color: #292943;
+  height: 100vh;
+  position: fixed;
+  top: 60px; /* below navbar */
+  left: 0;
+  padding: 20px;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+  color: white;
+  z-index: 1500;
+}

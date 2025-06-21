@@ -1,0 +1,17 @@
+.heading-login {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.h2-login {
+    font-size: bold;
+    text-align: center;
+    font-style: italic;
+    margin-top: ;
+}
+
+.p-login {
+    text-align: center;
+    font-size: 13px;
+}

@@ -1,0 +1,35 @@
+
+.expense-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.expense-header h5 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+}
+
+.expense-header button {
+  background-color: transparent;
+  border: none;
+  color: #007bff;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s ease;
+}
+
+.expense-header button:hover {
+  color: #3c44b1;
+}
+
+.expense-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}

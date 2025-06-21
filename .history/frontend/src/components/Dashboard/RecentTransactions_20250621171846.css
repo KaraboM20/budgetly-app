@@ -1,0 +1,25 @@
+
+
+.recent-transactions-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.recent-transactions-header h5 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.recent-transactions-header button {
+  background: none;
+  border: none;
+  color: #007bff;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}

@@ -1,0 +1,34 @@
+import React from 'react';
+import { XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Area, AreaChart } from 'recharts';
+
+const CustomLineChart = ({ data }) => {
+    const CustomTooltip = ({ active, payload }) => {
+        if (active && payload && payload.length) {
+            return (
+                <div>
+                    <p>{payload[0].payload.category}</p>
+                    <p>
+                    Amount: <span>${payload[0].payload.amount}</span>
+                    </p>
+                </div>
+            );
+        }
+        return null;
+    };
+
+  return (
+    <div>
+      <ResponsiveContainer width="100%" height={300}>
+        <AreaChart data={data}>
+        <defs>
+            <linearGradient id="incomeGradient" x1="0" y1="0" x2="0" y2="0">
+             <stop offset="5%"  stopColor="#875cf5" stop
+            </linearGradient>
+        </defs>
+        </AreaChart>
+      </ResponsiveContainer>
+    </div>
+  )
+}
+
+export default CustomLineChart

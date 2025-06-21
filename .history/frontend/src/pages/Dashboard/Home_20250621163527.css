@@ -1,0 +1,55 @@
+.dashboard-cards {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+/* Base icon circle */
+.card-icon {
+  font-size: 28px;
+  padding: 12px;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Different icon background colors */
+.bg-blue {
+  background-color: #007bff;
+}
+
+.bg-green {
+  background-color: #28a745;
+}
+
+.bg-orange {
+  background-color: #fd7e14;
+}
+
+.dashboard-section-row {
+  display: flex;
+  gap: 24px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.recent-box,
+.overview-box {
+  flex: 1;
+  min-width: 300px;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0,1);
+}
+
+.recent-box h5,
+.overview-box h5 {
+  font-size: 18px;
+  margin-bottom: 16px;
+  color: #333;
+}

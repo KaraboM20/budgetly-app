@@ -1,0 +1,87 @@
+.side-menu-container {
+  width: 240px;
+  min-height: 100vh;
+  background-color: #292943;
+  color: white;
+  padding: 24px 16px;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+  /* ADD THESE 3 LINES 👇 */
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+}
+
+
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.profile-image {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 8px;
+}
+
+.user-name {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.menu-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.menu-button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: none;
+  border: none;
+  color: white;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 14px;
+  border-radius: 6px;
+}
+
+.menu-button:hover {
+  background-color: #3c3c5c;
+}
+
+.menu-button.active {
+  background-color: white;
+  color: #292943;
+}
+
+.menu-icon {
+  font-size: 18px;
+}
+
+/* Add a wrapper class if not already present */
+.side-menu-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+  background-color: #1a1a2e;
+  z-index: 1000;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* When menu is open, add this class from Navbar */
+.side-menu-wrapper.open {
+  transform: translateX(0);
+}

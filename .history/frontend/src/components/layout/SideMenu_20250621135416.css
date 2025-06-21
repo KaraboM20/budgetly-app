@@ -1,0 +1,28 @@
+.side-menu-container {
+  width: 250px;
+  height: 100%;
+  background-color: #1a1a2e;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+  box-shadow: 4px 0 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(0); /* visible by default if mounted */
+}
+
+.side-menu-hidden {
+  transform: translateX(-100%);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.side-menu-visible {
+  transform: translateX(0);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Keep the rest of your styles for profile-section, buttons, etc. */

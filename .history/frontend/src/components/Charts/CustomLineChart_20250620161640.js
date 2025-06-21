@@ -1,0 +1,12 @@
+import React from 'react';
+import { XAxis, YAxis, Tooltip, ResponsiveContainer, Car } from 'recharts';
+
+const CustomLineChart = ({ data }) => {
+  return (
+    <div>
+      
+    </div>
+  )
+}
+
+export default CustomLineChart

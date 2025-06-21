@@ -1,0 +1,50 @@
+import './App.css';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import Login from './pages/Auth/Login';
+import SignUp from './pages/Auth/SignUp';
+import Home from './pages/Dashboard/Home';
+import Income from './pages/Dashboard/Income';
+import Expense from './pages/Dashboard/Expense';
+import Goal from './pages/Dashboard/Goal';
+import UserProvider from './context/UserContext';
+
+function App() {
+  return (
+    <UserProvider>
+    <div>
+        <Routes>
+          <Route path="/" element={<Root />} />
+          <Route path="/login" exact element={<Login />} />
+          <Route path="/signUp" exact element={<SignUp />} />
+          <Route path="/dashboard" exact element={<Home />} />
+          <Route path="/income" exact element={<Income />} />
+          <Route path="/expense" exact element={<Expense />} />
+          <Route path="/goal" exact element={<Goal />} />
+        </Routes>
+      
+    </div>
+    <Toaster 
+    toastOptions={{
+      style: {
+        fontSize: '13px'
+      },
+    }}
+    />
+    </UserProvider>
+  );
+}
+
+export default App;
+
+const Root = () => {
+  // Check if token exists in localStorage
+  const isAuthenticated = !!localStorage.getItem("token");
+
+  // Redirect to dashboard if authenticated, otherwise to login
+
+  return isAuthenticated ? (
+    <Navigate to="/dashboard" />
+  ) : (
+    <Navigate to="/login" />
+  );
+};

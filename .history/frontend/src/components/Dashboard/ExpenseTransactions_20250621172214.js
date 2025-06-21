@@ -1,0 +1,38 @@
+import React from 'react';
+import moment from 'moment';
+import { LuArrowRight } from 'react-icons/lu';
+import TransactionInfoCard from '../Cards/TransactionInfoCard';
+import './ExpenseTransactions.css';
+
+const ExpenseTransactions = ({ transactions = [], onSeeMore }) => {
+  
+  const transactionsArray = Array.isArray(transactions) ? transactions : [];
+
+  return (
+    <div className="expense-transactions-container">
+      <div>
+        <h5>Expenses</h5>
+        <button onClick={onSeeMore}>
+          See All
+          <LuArrowRight />
+        </button>
+      </div>
+
+      <div>
+        {transactionsArray.slice(0, 5).map((expense) => (
+          <TransactionInfoCard
+            key={expense._id}
+            title={expense.category}
+            icon={expense.icon}
+            date={moment(expense.date).format("Do MMM YYYY")}
+            amount={expense.amount}
+            type="expense"
+            hideDeleteBtn
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default ExpenseTransactions;

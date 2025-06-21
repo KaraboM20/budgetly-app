@@ -1,0 +1,15 @@
+/* Add this to SideMenu.css */
+
+.side-menu-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 1000;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.side-menu-wrapper.open {
+  transform: translateX(0);
+}

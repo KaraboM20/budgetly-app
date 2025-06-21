@@ -1,0 +1,11 @@
+import React from 'react'
+
+const TransactionInfoCard = ({title, icon, date, amount, type, hide}) => {
+  return (
+    <div>
+      
+    </div>
+  )
+}
+
+export default TransactionInfoCard

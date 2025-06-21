@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+
+.auth-layout {
+    background-image: url("https://media.istockphoto.com/id/1383433874/vector/business-and-financial-background-bar-chart-show-stock-market-trend-and-earning-investment.jpg?s=612x612&w=0&k=20&c=GXJfRzFUORbBcchhsTgW_8kzKocanN7jT3FJvtYsDbM=");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+}
+
+.h2-auth {
+    font-family: "Dancing Script", cursive;
+    font-size: 35px;
+    padding: 6px;
+}

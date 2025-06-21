@@ -1,0 +1,15 @@
+.side-menu-hidden {
+  transform: translateX(-100%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.side-menu-visible {
+  transform: translateX(0);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}

@@ -1,0 +1,31 @@
+.dashboard-cards {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+/* Base icon circle */
+.card-icon {
+  font-size: 28px;
+  padding: 12px;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Different icon background colors */
+.bg-blue {
+  background-color: #007bff;
+}
+
+.bg-green {
+  background-color: #28a745;
+}
+
+.bg-orange {
+  background-color: #fd7e14;
+}

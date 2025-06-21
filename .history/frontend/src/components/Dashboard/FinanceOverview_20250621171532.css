@@ -1,0 +1,16 @@
+
+.finance-overview-header {
+  margin-bottom: 16px;
+}
+
+.finance-overview-header h5 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.finance-overview-chart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

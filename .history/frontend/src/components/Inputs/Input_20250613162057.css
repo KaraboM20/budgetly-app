@@ -1,0 +1,32 @@
+.input-wrapper {
+  margin-bottom: 1.5rem;
+}
+
+.input-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.input-container {
+  position: relative;
+}
+
+.input-field {
+  padding: 14px 16px;
+  font-size: 18px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 50%;
+  box-sizing: border-box;
+}
+
+.toggle-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #888;
+}

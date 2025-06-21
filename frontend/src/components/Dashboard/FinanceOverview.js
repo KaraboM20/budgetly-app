@@ -1,0 +1,46 @@
+import React from 'react';
+import CustomPieChart from '../Charts/CustomPieChart';
+import './FinanceOverview.css';
+
+const COLORS = ["#875CF5", "#FA2C37", "#FF6900"];
+
+const FinanceOverview = ({ totalBalance, totalIncome, totalExpense }) => {
+  const balanceData = [
+    { name: "Total Balance", amount: totalBalance },
+    { name: "Total Expense", amount: totalExpense },
+    { name: "Total Income", amount: totalIncome },
+  ];
+
+  return (
+    <div className="finance-overview-card">
+      <div className="finance-overview-header">
+        <h5>Financial Overview</h5>
+      </div>
+
+      <div className="finance-overview-chart">
+        <CustomPieChart
+          data={balanceData}
+          label="Total Balance"
+          totalAmount={`$${totalBalance}`}
+          colors={COLORS}
+          showTextAnchor
+        />
+      </div>
+
+      {/* Legend below the chart */}
+      <div className="finance-overview-legend">
+        {balanceData.map((item, index) => (
+          <div key={item.name} className="legend-item">
+            <span
+              className="legend-color"
+              style={{ backgroundColor: COLORS[index] }}
+            ></span>
+            <span className="legend-label">{item.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default FinanceOverview;

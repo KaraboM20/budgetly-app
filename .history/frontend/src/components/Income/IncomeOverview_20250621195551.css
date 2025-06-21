@@ -1,0 +1,52 @@
+/* .income-overview-section {
+  background: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  margin-bottom: 30px;
+} */
+
+.income-overview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.income-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #2b2b2b;
+  margin: 0;
+}
+
+.income-description {
+  color: #777;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.add-income-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: #4f46e5;
+  color: white;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.add-income-btn:hover {
+  background-color: #4338ca;
+}
+
+.income-chart-wrapper {
+  width: 100%;
+  height: 320px;
+}
