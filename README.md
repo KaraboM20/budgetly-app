@@ -6,8 +6,8 @@ Budgetly is a full-stack web application built to help users track their income,
 
 ## 🚀 Live Demo
 
-- **Frontend (Netlify):** [https://budgetly.netlify.app](https://budgetly.netlify.app)
-- **Backend (Render):** [https://budgetly-app-pljf.onrender.com](https://budgetly-app-pljf.onrender.com)
+- **Frontend (Netlify):**
+- **Backend (Render):** 
 
 ---
 
@@ -45,4 +45,4 @@ Budgetly is a full-stack web application built to help users track their income,
 
 ---
 
-You can view the application here: https://budgetly-app-bykay.netlify.app/login
+- **You can access the application here:** [https://budgetly-app-bykay.netlify.app/)
