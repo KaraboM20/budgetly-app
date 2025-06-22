@@ -6,14 +6,14 @@ Budgetly is a full-stack web application built to help users track their income,
 
 ## 🚀 Live Demo
 
-- **Frontend (Netlify):**
-- **Backend (Render):** 
+- **Frontend (Netlify)**
+- **Backend (Render)** 
 
 ---
 
 ## 🔧 Tech Stack
 
-- **Frontend:** React.js, Tailwind CSS, Recharts, Axios
+- **Frontend:** React.js, CSS, Recharts, Axios
 - **Backend:** Node.js, Express.js, MongoDB Atlas
 - **State Management:** Redux (for goals and global state)
 - **Authentication:** JWT + bcrypt
