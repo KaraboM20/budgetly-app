@@ -25,10 +25,9 @@ Budgetly is a full-stack web application built to help users track their income,
 
 - 📈 Track income and expenses with detailed graphs
 - 🧮 Dynamic bar/line charts powered by Recharts
-- ➕ Add, edit, delete income/expense transactions
+- ➕ delete income/expense transactions
 - 🎯 Set and manage financial goals
 - 🔐 Secure login/register with JWT auth
-- 💾 Export income and expense data to Excel
 - ⚙️ Responsive UI and mobile-friendly design
 - 🗃️ Mock fallback data via `defaultDashboardData` for demo/testing
 
@@ -46,4 +45,4 @@ Budgetly is a full-stack web application built to help users track their income,
 
 ---
 
-You can view the application here:
+You can view the application here: https://budgetly-app-bykay.netlify.app/login
