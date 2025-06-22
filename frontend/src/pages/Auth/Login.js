@@ -13,9 +13,9 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false); 
 
   const { updateUser } = useContext(UserContext);
-
   const navigate = useNavigate();
 
   // Handle Login Form Submit
@@ -23,7 +23,7 @@ const Login = () => {
     e.preventDefault();
 
     if (!validateEmail(email)) {
-      setError ("Please enter a valid email address.");
+      setError("Please enter a valid email address.");
       return;
     }
     if (!password) {
@@ -32,8 +32,8 @@ const Login = () => {
     }
 
     setError("");
+    setLoading(true); 
 
-    //LOGIN API Call
     try {
       const response = await axiosInstance.post(API_PATHS.AUTH.LOGIN, {
         email,
@@ -47,48 +47,57 @@ const Login = () => {
         navigate("/dashboard");
       }
     } catch (error) {
-    if (error.response && error.response.data.message) {
-      setError(error.response.data.message);
-    } else {
-      setError("Something went wrong. Please try again.");
+      if (error.response && error.response.data.message) {
+        setError(error.response.data.message);
+      } else {
+        setError("Something went wrong. Please try again.");
+      }
+    } finally {
+      setLoading(false); // Stop loading
     }
-    }
-  }
+  };
+
   return (
     <AuthLayout>
       <div className='heading-login'>
         <h2 className='h2-login'>Welcome</h2>
         <p className='p-login'>Please enter your details to log in</p>
 
-       <div className="center-container">
-        <form className="form-login" onSubmit={handleLogin}>
-          <Input className="input-field" value={email} onChange={({target}) => setEmail(target.value)}
-          label= "Email Address"
-          placeholder= "Email Address"
-          type="text"
-          />
+        <div className="center-container">
+          <form className="form-login" onSubmit={handleLogin}>
+            <Input
+              className="input-field"
+              value={email}
+              onChange={({ target }) => setEmail(target.value)}
+              label="Email Address"
+              placeholder="Email Address"
+              type="text"
+            />
 
-          <Input className="input-field" value={password} onChange={({target}) => setPassword(target.value)}
-          label= "Password"
-          placeholder= "Password"
-          type="password"
-          />
+            <Input
+              className="input-field"
+              value={password}
+              onChange={({ target }) => setPassword(target.value)}
+              label="Password"
+              placeholder="Password"
+              type="password"
+            />
 
-          {error && <p>{error}</p>}
+            {error && <p className="error-message">{error}</p>}
+            {loading && <div className="spinner"></div>} {/* Spinner */}
 
-          <button type='submit' className="login-button">
-            LOGIN
-          </button>
+            <button type='submit' className="login-button" disabled={loading}>
+              {loading ? "Loading..." : "LOGIN"}
+            </button>
 
-          <p>
-            Don't have an account?{""}
-            <Link to="/signup">SignUp</Link>
-          </p>
-        </form>
+            <p>
+              Don't have an account? <Link to="/signup">SignUp</Link>
+            </p>
+          </form>
         </div>
       </div>
     </AuthLayout>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
