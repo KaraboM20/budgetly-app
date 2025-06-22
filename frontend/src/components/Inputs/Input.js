@@ -16,7 +16,7 @@ const Input = ({value, onChange, placeholder, label, type, className}) => {
       <div className="input-container">
         <input
         className={`input-field ${className}`}
-        type={type == 'password' ? showPassword ? 'text' : 'password' : type}
+        type={type === 'password' ? showPassword ? 'text' : 'password' : type}
         placeholder={placeholder}
         value={value}
         onChange={(e) => onChange(e)}

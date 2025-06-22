@@ -4,7 +4,7 @@ import Navbar from './Navbar';
 import './DashboardLayout.css';
 
 const DashboardLayout = ({ children, activeMenu }) => {
-  const { user } = useContext(UserContext);
+  useContext(UserContext);
 
   return (
     <div className="dashboard-wrapper">

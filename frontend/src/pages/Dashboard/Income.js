@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback  } from 'react';
 import DashboardLayout from '../../components/layout/DashboardLayout';
 import IncomeOverview from '../../components/Income/IncomeOverview';
 import AddIncomeForm from '../../components/Income/AddIncomeForm';
@@ -29,21 +29,19 @@ const Income = () => {
   const [openDeleteAlert, setOpenDeleteAlert] = useState({ show: false, data: null });
   const [openAddIncomeModal, setOpenAddIncomeModal] = useState(false);
 
-  const fetchIncomeDetails = async () => {
+  const fetchIncomeDetails = useCallback(async () => {
     if (loading) return;
     setLoading(true);
     try {
       const response = await axiosInstance.get(API_PATHS.INCOME.GET_ALL_INCOME);
-      setIncomeData(response.data && response.data.length > 0 
-        ? response.data 
-        : defaultDashboardData.last60DaysIncome.transactions);
+      setIncomeData(response.data?.length ? response.data : defaultDashboardData.last60DaysIncome.transactions);
     } catch (error) {
       console.error("Failed to fetch income:", error);
       setIncomeData(defaultDashboardData.last60DaysIncome.transactions);
     } finally {
       setLoading(false);
     }
-  };
+  }, [loading]);
 
   const handleAddIncome = async (income) => {
     const { source, amount, date, icon } = income;
@@ -97,7 +95,7 @@ const Income = () => {
 
   useEffect(() => {
     fetchIncomeDetails();
-  }, []);
+  }, [fetchIncomeDetails]);
 
   const barChartData = incomeData.reduce((acc, item) => {
     const existing = acc.find(e => e.source === item.source);

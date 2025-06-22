@@ -51,7 +51,7 @@ const Navbar = ({ activeMenu }) => {
           {user?.profileImageUrl ? (
             <img
               src={user?.profileImageUrl || ''}
-              alt="Profile Image"
+              alt="User profile"
               className="profile-image"
             />
           ) : (

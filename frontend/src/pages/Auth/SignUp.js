@@ -7,11 +7,9 @@ import { validateEmail } from '../../utils/helper';
 import './SignUp.css';
 import axiosInstance from '../../utils/axiosInstance';
 import { UserContext } from '../../context/UserContext';
-import uploadImage from '../../utils/uploadImage';
 import { API_PATHS } from '../../utils/apiPaths';
 
 const SignUp = () => {
- const [profilePic, setProfilePic] = useState(null);
  const [fullName, setFullNname] = useState("");
  const [email, setEmail] = useState("");
  const [password, setPassword] = useState("");
@@ -23,8 +21,6 @@ const SignUp = () => {
 
  const handleSignup = async (e) => {
   e.preventDefault();
-
-  let profileImageUrl = "";
 
   if (!fullName) {
     setError("Please enter your name");
@@ -38,24 +34,17 @@ const SignUp = () => {
 
   if (!password) {
     setError("Please enter the password");
-    return
+    return;
   }
 
   setError("");
 
   // SignUp API Call
   try {
-
-    // Upload image if present
-    if (profilePic) {
-      const imgUploadRes = await uploadImage(profilePic);
-      profileImageUrl = imgUploadRes.imageUrl || "";
-    }
     const response = await axiosInstance.post(API_PATHS.AUTH.REGISTER, {
       fullName,
       email,
       password,
-      profileImageUrl
     });
 
     const { token, user } = response.data;
@@ -80,45 +69,49 @@ const SignUp = () => {
       <h3>Create an Account</h3>
       <p>Join Budgetly by entering your details below</p>
 
-      <form onSubmit={handleSignup}  className="signup-form">
+      <form onSubmit={handleSignup} className="signup-form">
         <div>
           <Input
-          value={fullName}
-          onChange= {({ target }) => setFullNname(target.value)}
-          label= "Full Name"
-          placeholder="Full Name"
-          type="text"
+            value={fullName}
+            onChange={({ target }) => setFullNname(target.value)}
+            label="Full Name"
+            placeholder="Full Name"
+            type="text"
           />
 
-          <Input className="input-field" value={email} onChange={({target}) => setEmail(target.value)}
-          label= "Email Address"
-          placeholder= "Email Address"
-          type="text"
+          <Input
+            className="input-field"
+            value={email}
+            onChange={({ target }) => setEmail(target.value)}
+            label="Email Address"
+            placeholder="Email Address"
+            type="text"
           />
 
-          <Input className="input-field" value={password} onChange={({target}) => setPassword(target.value)}
-          label= "Password"
-          placeholder= "Password"
-          type="password"
+          <Input
+            className="input-field"
+            value={password}
+            onChange={({ target }) => setPassword(target.value)}
+            label="Password"
+            placeholder="Password"
+            type="password"
           />
-
-          
         </div>
 
         {error && <p>{error}</p>}
-        
-          <button type='submit' className="login-button" >
-            SIGN UP
-          </button>
-        
-            <p className="signup-link">
-              Already have an account?{""}
-              <Link to="/login">Login</Link>
-            </p>
+
+        <button type="submit" className="login-button">
+          SIGN UP
+        </button>
+
+        <p className="signup-link">
+          Already have an account?{' '}
+          <Link to="/login">Login</Link>
+        </p>
       </form>
      </div>
     </AuthLayout>
   )
 }
 
-export default SignUp
+export default SignUp;

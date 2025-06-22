@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import DashboardLayout from '../../components/layout/DashboardLayout';
 import { useUserAuth } from '../../hooks/useUserAuth';
 import { useNavigate } from 'react-router-dom';
@@ -23,29 +23,25 @@ const Home = () => {
   const [dashboardData, setDashboardData] = useState(defaultDashboardData);
   const [loading, setLoading] = useState(false);
 
-  const fetchDashboardData = async () => {
+  const fetchDashboardData = useCallback(async () => {
     if (loading) return;
 
     setLoading(true);
 
     try {
       const response = await axiosInstance.get(API_PATHS.DASHBOARD.GET_DATA);
-      if (response.data) {
-        setDashboardData(response.data);
-      } else {
-        setDashboardData(defaultDashboardData); // Fallback if API returns no data
-      }
+      setDashboardData(response.data || defaultDashboardData);
     } catch (error) {
       console.error("Failed to fetch dashboard data:", error);
-      setDashboardData(defaultDashboardData); // Fallback on error
+      setDashboardData(defaultDashboardData);
     } finally {
       setLoading(false);
     }
-  };
+  }, [loading]);
 
   useEffect(() => {
     fetchDashboardData();
-  }, []);
+  }, [fetchDashboardData]);
 
   return (
     <div className="home-container">

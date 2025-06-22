@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useUserAuth } from '../../hooks/useUserAuth';
 import DashboardLayout from '../../components/layout/DashboardLayout';
 import ExpenseOverview from '../../components/Expense/ExpenseOverview';
@@ -21,24 +21,20 @@ const Expense = () => {
   const [openDeleteAlert, setOpenDeleteAlert] = useState({ show: false, data: null });
   const [openAddExpenseModal, setOpenAddExpenseModal] = useState(false);
 
-  const fetchExpenseDetails = async () => {
+  const fetchExpenseDetails = useCallback(async () => {
     if (loading) return;
     setLoading(true);
 
     try {
-      const response = await axiosInstance.get(API_PATHS.INCOME.GET_ALL_INCOME);
-      if (response.data && response.data.length > 0) {
-        setExpenseData(response.data);
-      } else {
-        setExpenseData(defaultDashboardData.last60DaysIncome.transactions);
-      }
+      const response = await axiosInstance.get(API_PATHS.EXPENSE.GET_ALL_EXPENSE);
+      setExpenseData(response.data?.length ? response.data : defaultDashboardData.last60DaysIncome.transactions);
     } catch (error) {
       console.error("Failed to fetch Expense:", error);
       setExpenseData(defaultDashboardData.last60DaysIncome.transactions);
     } finally {
       setLoading(false);
     }
-  };
+  }, [loading]);
 
   const handleAddExpense = async (expense) => {
     const { category, amount, date, icon } = expense;
@@ -113,7 +109,7 @@ const Expense = () => {
 
   useEffect(() => {
     fetchExpenseDetails();
-  }, []);
+  }, [fetchExpenseDetails]);
 
   return (
     <DashboardLayout activeMenu="Expense">

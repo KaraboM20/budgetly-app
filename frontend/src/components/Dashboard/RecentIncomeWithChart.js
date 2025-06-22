@@ -7,17 +7,16 @@ const COLORS = ["#875CF5", "#FA2C37", "#4f39f6"];
 const RecentIncomeWithChart = ({ data, totalIncome }) => {
   const [chartData, setChartData] = useState([]);
 
-  const prepareChartData = () => {
-    const dataArr = data?.map((item) => ({
-      name: item?.category || item?.source || "Unknown",
-      amount: item?.amount || 0,
-    }));
-    setChartData(dataArr);
-  };
-
   useEffect(() => {
+    const prepareChartData = () => {
+      const dataArr = data?.map((item) => ({
+        name: item?.category || item?.source || "Unknown",
+        amount: item?.amount || 0,
+      }));
+      setChartData(dataArr);
+    };
+
     prepareChartData();
-    return () => {};
   }, [data]);
 
   return (
